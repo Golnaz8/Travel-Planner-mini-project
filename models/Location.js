@@ -30,4 +30,4 @@ Location.init(
   }
 );
 
-module.exports = User;
+module.exports = Location;

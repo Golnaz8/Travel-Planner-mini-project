@@ -24,5 +24,37 @@ router.post('/', async (req, res) => {
   }
 });
 
+// GET one traveller
+router.get('/:id', async (req, res) => {
+  try {
+    const travellerData = await Traveller.findByPk(req.params.id);
+    if (!travellerData) {
+      res.status(404).json({ message: 'No user with this id!' });
+      return;
+    }
+    res.status(200).json(travellerData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// DELETE a traveller
+router.delete('/:id', async (req, res) => {
+  try {
+    const travellerData = await Traveller.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    if (!travellerData) {
+      res.status(404).json({ message: 'No user with this id!' });
+      return;
+    }
+    res.status(200).json(travellerData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 
 module.exports = router;
