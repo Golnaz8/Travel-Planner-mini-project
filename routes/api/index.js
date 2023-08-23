@@ -2,10 +2,10 @@ const router = require('express').Router();
 
 const travellerRoutes = require('./travellerRoutes');
 const locationRoutes = require('./locationRoutes');
-const tripsRoutes = require('./tripsRoutes');
+const tripRoutes = require('./tripRoutes');
 
 router.use('/travellers', travellerRoutes);
 router.use('/locations', locationRoutes);
-router.use('/trips', tripsRoutes);
+router.use('/trips', tripRoutes);
 
 module.exports = router;

@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { Trip } = require('../../models');
 const Location = require('../../models/Location');
 
 // GET all locations
@@ -26,7 +27,9 @@ router.post('/', async (req, res) => {
 // GET one location
 router.get('/:id', async (req, res) => {
     try {
-      const locationData = await Location.findByPk(req.params.id);
+      const locationData = await Location.findByPk(req.params.id, {
+        include: [{ model: Location }, { model: Trip }],
+      });
       if (!locationData) {
         res.status(404).json({ message: 'No location with this id!' });
         return;
